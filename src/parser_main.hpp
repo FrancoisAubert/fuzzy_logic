@@ -11,7 +11,7 @@ using std::ifstream;
 #include <utility>
 #include <vector>
 #include <tuple>
-#include <stdlib.h> 
+#include <stdlib.h>
 //déja définie dans parser faits
 const int MAX_CHARS_PER_LINE = 512;
 const int MAX_TOKENS_PER_LINE = 20;
@@ -58,8 +58,8 @@ std::vector<Rule> Parser_rules(const char* filename)
   // create a file-reading object
   ifstream fin;
   fin.open(filename); // open a file
-  
-  
+
+
   // read each line of the file
 
   Obj obj;
@@ -73,7 +73,7 @@ std::vector<Rule> Parser_rules(const char* filename)
   std::vector<Rule> rules;
 
 
-  std::vector<char*> parsed_line; 
+  std::vector<char*> parsed_line;
 
     int num_ligne =0;
 
@@ -86,11 +86,11 @@ std::vector<Rule> Parser_rules(const char* filename)
 
     fin.getline(buf, MAX_CHARS_PER_LINE);
 
-    
+
     // parse the line into blank-delimited tokens
     int n = 0; // a for-loop index
 
-    
+
     // array to store memory addresses of the tokens in buf
     const char* token[MAX_TOKENS_PER_LINE] = {}; // initialize to 0
 
@@ -117,7 +117,7 @@ std::vector<Rule> Parser_rules(const char* filename)
     	cout << endl;
 */if(token[0]){
       //std::cout<<"sur cette ligne le token 0 vaut "<<token[0]<<std::endl;
-      
+
       if(strcmp(token[0],"Regle")==0){
 
         name2=token[1];
@@ -148,7 +148,7 @@ std::vector<Rule> Parser_rules(const char* filename)
     else if(strcmp(token[0],"Certitude")==0){
 
 
-      certitude = atof(token[1]); 
+      certitude = atof(token[1]);
 
     }
   }else{
@@ -177,14 +177,7 @@ std::vector<Rule> Parser_rules(const char* filename)
      std::cout<<"la 5eme valeure de la regle est "<< std::get<4>(current_rule)<<std::endl;
           std::cout<<"*************************** "<< std::get<4>(current_rule)<<std::endl;
           std::cout<<"*************************** "<< std::get<4>(current_rule)<<std::endl;
-
-
   }
-
-
-
-
-
 
 num_ligne++;
 }
@@ -202,12 +195,12 @@ std::vector<Fait> Parser_faits(const char* filename)
   // create a file-reading object
   ifstream fin;
   fin.open(filename); // open a file
-  
-  
+
+
   // read each line of the file
 
 
-std::vector<Fait> parsed_file; 
+std::vector<Fait> parsed_file;
 
 
   while (!fin.eof())
@@ -215,13 +208,13 @@ std::vector<Fait> parsed_file;
     // read an entire line into memory
     char buf[MAX_CHARS_PER_LINE];
     fin.getline(buf, MAX_CHARS_PER_LINE);
-    
+
     // parse the line into blank-delimited tokens
     int n = 0; // a for-loop index
-    
+
     // array to store memory addresses of the tokens in buf
     const char* token[MAX_TOKENS_PER_LINE] = {}; // initialize to 0
-    
+
     // parse the line
     token[0] = strtok(buf, DELIMITER); // first token
     if (token[0]) // zero if line is blank
@@ -238,7 +231,7 @@ std::vector<Fait> parsed_file;
       /*cout << "Token[" << i << "] = " << token[i] << endl;
       cout << endl;
 */
-  if (i%3==0){  
+  if (i%3==0){
     Name name = token[i];
     Val val = token [i+1];
     Certitude certitude = std::stod (token [i+2]);
@@ -250,11 +243,11 @@ std::vector<Fait> parsed_file;
     Texte texte = "résultat du bulletin";
 
     Fait fait = std::make_tuple(name, type, premlist, concllist, metapremlist, eval, val, certitude, texte);
-    std::cout<< std::get<0>(fait) << " "<< std::get<1>(fait) << " "<< std::get<2>(fait) << " "<< std::get<3>(fait) <<" "/*<< std::get<4>(it)[0] <<" "<< */std::get<7>(fait) <<" "<< std::get<8>(fait) << std::endl ;
+    //std::cout<< std::get<0>(fait) << " "<< std::get<1>(fait) << " "<< std::get<2>(fait) << " "<< std::get<3>(fait) <<" "/*<< std::get<4>(it)[0] <<" "<< */std::get<7>(fait) <<" "<< std::get<8>(fait) << std::endl ;
 
     parsed_file.push_back(fait);
 
-       }  
+       }
   }
 
   }
