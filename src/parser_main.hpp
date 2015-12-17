@@ -352,3 +352,34 @@ std::vector<Premisse> currentPremisses = std::get<1>(*itr);
 
 
 }
+
+void printRule(Rule rule){
+  int i = 0;
+
+//liste des prémisses de la règle courante:
+std::vector<Premisse> currentPremisses = std::get<1>(rule);
+
+    std::cout<<"Regardons ensemble la règle numéro :" << i <<std::endl;
+    std::cout<<"***********************************" << std::endl;
+
+//on regarde le nom
+    std::cout<<"Cette règle est la règle: " << std::get<0>(rule)<<std::endl;
+
+//on regarde les prémisses
+    std::cout<<"Cette règle contient " <<std::get<1>(rule).size() << " prémisses qui sont: " <<std::endl;
+    for(std::vector<Premisse>::iterator itp = currentPremisses.begin();itp!=currentPremisses.end();++itp ){
+     std::cout<< itp->first<< "avec un coeff de "<< itp->second<<std::endl;
+    }
+
+//on regarde la conclusion
+    std::cout<<"Cette règle contient la conclusion suivante: "<<std::get<2>(rule).first <<" avec un coeff de " <<std::get<2>(rule).second<<std::endl;
+
+//on regarde le type de la règle
+    if(std::get<3>(rule)){std::cout<<"Cette règle est de type flou"<<std::endl;}else{std::cout<<"Cette règle n'est pas de type flou"<<std::endl;}
+
+//on regarde la certitude de la règle
+    std::cout<<"Cette règle a une certitude de " << std::get<4>(rule)<<std::endl;
+
+    std::cout<<"                                    " << std::endl;
+    i++;
+  }
