@@ -11,7 +11,7 @@ using std::ifstream;
 #include <utility>
 #include <vector>
 #include <tuple>
-#include <stdlib.h> 
+#include <stdlib.h>
 //déja définie dans parser faits
 const int MAX_CHARS_PER_LINE = 512;
 const int MAX_TOKENS_PER_LINE = 20;
@@ -48,8 +48,8 @@ std::vector<Rule> Parser_rules(const char* filename)
   // create a file-reading object
   ifstream fin;
   fin.open(filename); // open a file
-  
-  
+
+
   // read each line of the file
 
   Obj obj;
@@ -63,7 +63,7 @@ std::vector<Rule> Parser_rules(const char* filename)
   std::vector<Rule> rules;
 
 
-  std::vector<char*> parsed_line; 
+  std::vector<char*> parsed_line;
 
     int num_ligne =0;
 
@@ -76,11 +76,11 @@ std::vector<Rule> Parser_rules(const char* filename)
 
     fin.getline(buf, MAX_CHARS_PER_LINE);
 
-    
+
     // parse the line into blank-delimited tokens
     int n = 0; // a for-loop index
 
-    
+
     // array to store memory addresses of the tokens in buf
     const char* token[MAX_TOKENS_PER_LINE] = {}; // initialize to 0
 
@@ -107,7 +107,7 @@ std::vector<Rule> Parser_rules(const char* filename)
     	cout << endl;
 */if(token[0]){
       //std::cout<<"sur cette ligne le token 0 vaut "<<token[0]<<std::endl;
-      
+
       if(strcmp(token[0],"Regle")==0){
 
         name2=token[1];
@@ -120,7 +120,7 @@ std::vector<Rule> Parser_rules(const char* filename)
       }
 
       else if(strcmp(token[0],"et")==0){
-
+        std::cout <<"on détecte le et"<<std::endl;
         premisses.emplace_back(token[1],token[2]);
       }
 
@@ -138,7 +138,7 @@ std::vector<Rule> Parser_rules(const char* filename)
     else if(strcmp(token[0],"Certitude")==0){
 
 
-      certitude = atof(token[1]); 
+      certitude = atof(token[1]);
 
     }
   }else{

@@ -1,4 +1,5 @@
 #include "parser_main.hpp"
+#include "fuzzyengine.hpp"
 
 
 //#include <Matrix>
@@ -10,10 +11,11 @@ int main(){
 std::cout<<"* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * "<<std::endl;
 std::cout<<"Ce programme permettra de réaliser des opérations floues sur une base de faits et une base de règles à l'aide d'un fuzzifier"<<std::endl;
 std::cout<<"* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * "<<std::endl;
+std::cout<<"                                                                                                                            "<<std::endl;
 
 
 char* filename;
-std::cout<<"Entrer le nom d'un fichier texte à analyser pour créer la base de faits"<<std::endl;
+//std::cout<<"Entrer le nom d'un fichier texte à analyser pour créer la base de faits"<<std::endl;
 //std::cin>>filename;
 //std::cout<<"Génération de la base de faits à base du fichier texte spécifié ... "<<std::endl;
 
@@ -23,10 +25,15 @@ std::vector<Fait> Faits = Parser_faits("faits.txt");
 //on parse les regeles
 std::vector<Rule> Rules = Parser_rules("rules.txt");
 
+//update de la base de faits en prenant en compte la base de rules
 
-updateFaits(Faits, Rules);
+Faits = updateFaits(Faits, Rules);
 
+//check à l'écran la base de faits
 
+printFaits(Faits);
+
+//printRules(Rules);
 
 //on créé nos vecteurs de valeur de fait
 double listB[] = {0.001,0.005,0.005,0.01,0.1,0.3,0.4,0.6,0.8,0.9,1.0};
@@ -50,7 +57,7 @@ uB[10]=1.0;
 for( std::vector<double>::iterator it = uB.begin() ; it != uB.end(); ++it){
 	double value = *it;
 	uTB.push_back(value*value);
-	std::cout<<uTB.back()<<std::endl;
+	//std::cout<<uTB.back()<<std::endl;
 }
 
 /*
