@@ -24,7 +24,7 @@ std::vector<Fait> Faits = Parser_faits("faits.txt");
 std::vector<Rule> Rules = Parser_rules("rules.txt");
 
 
-
+updateFaits(Faits, Rules);
 
 
 
@@ -55,7 +55,7 @@ for( std::vector<double>::iterator it = uB.begin() ; it != uB.end(); ++it){
 
 /*
 std::tuple<std::string, std::string, double> line;
-std::vector<std::tuple<std::string, std::string, double>> parsed_file; 
+std::vector<std::tuple<std::string, std::string, double>> parsed_file;
  parsed_file.emplace_back("test","test",0);
 std::cout<< std::get<0>(parsed_file[0]) << std::get<1>(parsed_file[0]) << std::get<2>(parsed_file[0]) << std::endl ;
 */
